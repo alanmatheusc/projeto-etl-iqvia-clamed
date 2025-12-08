@@ -1,10 +1,12 @@
 import pandas as pd
+import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.ensemble import ExtraTreesRegressor
 
 
 # Transformações nos dados extraídos
+
 def clean_brick(df):
     df_clean = df.copy()  
     # Quero apenas valores únicos na coluna 'brick'
@@ -23,9 +25,11 @@ def transform_sales_price(df):
     '''
     df_copy = df.copy()
     df_renamed = change_column_names(df_copy)
-    num_cols = df_renamed.select_dtypes(include='number').columns
+    #num_cols = df_renamed.select_dtypes(include='number').columns
 
-    # Usando IterativeImputer com ExtraTreesRegressor para imputar valores nulos.
+    '''
+    Usando IterativeImputer com ExtraTreesRegressor para imputar valores nulos. Essa abordagem não seria interessante nesse caso pois tem baixa quantidade de dados para treinar o modelo de regressão.
+    Porém deixo o código comentado aqui como referência para futuros projetos com datasets maiores. E um conceito novo que estou aprendendo e gostaria de aplicar em projetos futuros.
     imputer = IterativeImputer(
         estimator=ExtraTreesRegressor(n_estimators=30, random_state=42),
         max_iter=10,
@@ -34,11 +38,31 @@ def transform_sales_price(df):
     df_renamed[num_cols] = imputer.fit_transform(df_renamed[num_cols])
     df_renamed[num_cols] = df_renamed[num_cols].clip(lower=0).round()
 
+    '''
+    # Imputação simples usando a média para colunas numéricas
+    num_cols = df_renamed.select_dtypes(include='number').columns
+    for col in num_cols:
+        if (df_renamed[col] == 0).any():
+            df_renamed[col].replace(0, np.nan, inplace=True)
+            df_renamed[col].fillna(df_renamed[col].median(), inplace=True)
+        else:
+            df_renamed[col].fillna(df_renamed[col].median(), inplace=True)
+        df_renamed[col] = df_renamed[col].clip(lower=0).round()
+    
     # Removendo linhas que ainda possuem todos os valores nulos (se houver)
     df_renamed.dropna(how='all',inplace=True)
     return df_renamed
 
 def change_column_names(df):
+    '''
+    Essa função renomeia as colunas do DataFrame para nomes mais amigáveis.
+    1. brick: Identificador do Brick
+    2. ean: Código EAN do produto
+    3. cod_prod_catarinense: Código do Produto Catarinense
+    4. vendas_concorr_indep_unid: Vendas em unidades para concorrentes independentes
+    5. vendas_grandes_concorr_unid: Vendas em unidades para grandes concorrentes
+    6. venda_preco_popular_unid: Vendas em unidades para a  preço popular - filial da clamed
+    '''
     df = df.set_axis(['brick','ean','cod_prod_catarinense','vendas_concorr_indep_unid','vendas_grandes_concorr_unid',
     'venda_preco_popular_unid'], axis='columns')
     return df
