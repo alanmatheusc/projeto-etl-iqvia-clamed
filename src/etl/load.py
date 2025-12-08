@@ -18,3 +18,4 @@ def insert_into_sales_price_table(sales_price):
         query.insert_data_on_sales_price(sales_price)
     except Exception as e:
         print(f"Erro ao inserir dados na tabela sales_price: {e}")
+

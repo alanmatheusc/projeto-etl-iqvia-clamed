@@ -44,3 +44,34 @@ def insert_data_on_sales_price(sales_price):
         conn.commit()
     except Exception as e:
         return f"Erro ao inserir dados: {e}"
+    
+
+def get_data_from_dim_brick():
+    connect = connection.connect_db()
+    try:
+      with connect as conn:
+        query = "SELECT * FROM dim_brick"
+        df = pd.read_sql_query(query, conn)
+        return df
+    except Exception as e:
+        return f"Erro ao buscar dados: {e}"
+    
+def get_data_from_fact_filial():
+    connect = connection.connect_db()
+    try:
+      with connect as conn:
+        query = "SELECT * FROM fact_filial"
+        df = pd.read_sql_query(query, conn)
+        return df
+    except Exception as e:
+        return f"Erro ao buscar dados: {e}"
+
+def get_data_from_fact_vendas():
+    connect = connection.connect_db()
+    try:
+      with connect as conn:
+        query = "SELECT * FROM fact_vendas"
+        df = pd.read_sql_query(query, conn)
+        return df
+    except Exception as e:
+        return f"Erro ao buscar dados: {e}"
