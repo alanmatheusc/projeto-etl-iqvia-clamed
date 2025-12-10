@@ -2,6 +2,7 @@ import pandas as pd
 
 def extract_filial_brick():
     filial_brick = pd.read_excel('data/raw/filial-brick_sample.xlsx')
+    print(filial_brick)
     return filial_brick
 
 def extract_sales_price():
