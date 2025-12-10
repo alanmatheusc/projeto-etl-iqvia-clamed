@@ -31,3 +31,31 @@ Utilizei a solução padrão **dimensional modeling** com:
 - SQL
 - Modelagem de Dados
 - Python
+
+## Como Usar
+
+1. **Exportação dos Dados**
+  - Os dados estão dispostos na pasta `data/`.
+
+2. **Configuração do Ambiente**
+  - Certifique-se de ter o Python instalado (recomenda-se versão 3.14 ou superior).
+
+3. **Instalação das Dependências**
+  - Execute o comando abaixo para instalar os pacotes necessários:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Execução do Processo ETL**
+  - Execute o script principal para iniciar o processo ETL:
+    ```bash
+    python pipeline.py
+    ```
+  - Os dados serão extraídos, limpos e carregados no banco conforme a modelagem apresentada.
+
+
+  ## Análises Realizadas
+
+  Apesar da quantidade limitada de dados, foi possível realizar algumas análises de mercado, comparando concorrentes e preços populares (Clamed) com base nas informações fornecidas pela IQVIA. Essas análises permitiram identificar padrões de competitividade e diante disso percebi que o preço médio da Preço Popular está muito abaixo da dos seus concorrentes.
+
+  <img src='imgs/grafico_comparacao_de_mercado.png' alt='Gráfico de comparação de mercado'/>
