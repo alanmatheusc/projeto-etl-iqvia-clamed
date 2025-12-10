@@ -59,3 +59,18 @@ Utilizei a solução padrão **dimensional modeling** com:
   Apesar da quantidade limitada de dados, foi possível realizar algumas análises de mercado, comparando concorrentes e preços populares (Clamed) com base nas informações fornecidas pela IQVIA. Essas análises permitiram identificar padrões de competitividade e diante disso percebi que o preço médio da Preço Popular está muito abaixo da dos seus concorrentes.
 
   <img src='imgs/grafico_comparacao_de_mercado.png' alt='Gráfico de comparação de mercado'/>
+
+
+  ## Conteúdos Abordados
+
+  - [x] **Versionamento**: Uso do GitHub para versionamento de código.
+  - [x] **Banco de Dados**: Modelo Relacional, Comandos DDL, Comandos DML, e uso do PostgreSQL.
+  - [x] **Python**: Lógica de Programação, Estruturas de controle de fluxo, Estrutura de dados, Documentação de código e Tratamento de Exceções.
+  - [x] **Pandas**: Introdução ao Pandas, Limpeza de Dados, Transformações e Visualização com Matplotlib/Seaborn.
+
+
+  ## Conceitos para Aprofundar e Estudar Futuramente
+
+  - [ ] Regressão Linear
+  - [ ] Árvores de Regressão
+  - [x] Estatística (Em progresso)
